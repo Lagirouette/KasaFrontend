@@ -1,0 +1,53 @@
+import Image from "next/image";
+import { Suspense } from "react";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import HowItWorks from "@/components/home/HowItWorks";
+import PropertyList, { PropertyListSkeleton } from "@/components/properties/PropertyList";
+
+// TODO : remplacer par la photo de la maquette (maison dans les dunes) exportée depuis Figma
+// vers public/images/hero.jpg, puis utiliser src="/images/hero.jpg".
+const HERO_IMAGE =
+  "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg";
+
+export default function HomePage() {
+  return (
+    <>
+      <Header />
+      <main className="mx-auto w-full max-w-[508px] flex-1 px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">
+        <section className="text-center" aria-labelledby="home-title">
+          <h1 id="home-title" className="text-primary text-2xl font-bold md:text-3xl">
+            Chez vous, <br className="md:hidden" />
+            partout et ailleurs
+          </h1>
+          <p className="mx-auto mt-3 max-w-[340px] text-sm md:max-w-none">
+            Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos
+            hôtes.
+          </p>
+
+          <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[20px] md:aspect-[25/10]">
+            <Image
+              src={HERO_IMAGE}
+              alt=""
+              fill
+              preload
+              sizes="(min-width: 1000px) 968px, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </section>
+
+        <section aria-label="Logements" className="mt-4">
+          <Suspense fallback={<PropertyListSkeleton />}>
+            <PropertyList />
+          </Suspense>
+        </section>
+
+        <div className="mt-8">
+          <HowItWorks />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}

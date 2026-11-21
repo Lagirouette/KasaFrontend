@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/*
+ * Couleurs relevées sur les maquettes Kasa.
+ * Accessibilité (WCAG AA) : un texte doit avoir un contraste d'au moins 4.5:1 avec son fond.
+ * Le rouge-orangé du logo ("brand") est réservé aux éléments graphiques (logo, décor),
+ * où 3:1 suffit. Les textes colorés utilisent "primary", plus foncé.
+ */
+@theme {
+  --color-brand: #e3532e;          /* logo, décor */
+  --color-primary: #99331a;        /* titres, liens colorés (8:1 sur blanc) */
+  --color-primary-dark: #8a2b14;   /* cartes "Comment ça marche" */
+  --color-dark: #1f1f1f;           /* texte principal */
+  --color-background: #fff9f7;     /* fond des pages */
+  --color-surface: #ffffff;        /* cartes, header, footer */
+  --color-line: #ece6e3;           /* bordures */
+  --color-muted: #5f6672;          /* textes secondaires */
+
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-dark);
+}
+
+/*
+ * Focus visible au clavier (WCAG 2.4.7) sur tous les éléments interactifs.
+ * Hors des "layers" Tailwind pour l'emporter sur outline-none.
+ */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
