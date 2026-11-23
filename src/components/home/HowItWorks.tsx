@@ -1,3 +1,5 @@
+import Card from "@/components/ui/Card";
+
 const STEPS = [
   {
     title: "Recherchez",
@@ -15,7 +17,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section aria-labelledby="how-it-works" className="bg-surface rounded-[10px] px-4 py-10 text-center sm:px-14">
+    <Card as="section" aria-labelledby="how-it-works" className="py-10 text-center sm:px-14">
       <h2 id="how-it-works" className="text-xl font-semibold">
         Comment ça marche ?
       </h2>
@@ -32,6 +34,6 @@ export default function HowItWorks() {
           </li>
         ))}
       </ol>
-    </section>
+    </Card>
   );
 }

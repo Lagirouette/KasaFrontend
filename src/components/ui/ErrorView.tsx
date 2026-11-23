@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Button } from "./Button";
 import ErrorState from "./ErrorState";
 
 /**
@@ -25,13 +26,9 @@ export default function ErrorView({ error, retry }: { error: unknown; retry: () 
         "La page n'a pas pu être chargée. Vérifiez votre connexion puis réessayez dans quelques instants."
       }
       action={
-        <button
-          type="button"
-          onClick={() => retry()}
-          className="bg-primary h-[50px] rounded-[10px] px-6 text-sm text-white transition hover:opacity-90"
-        >
+        <Button size="sm" onClick={() => retry()}>
           Réessayer
-        </button>
+        </Button>
       }
       details={digest ? `Référence de l'erreur : ${digest}` : undefined}
     />

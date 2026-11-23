@@ -1,3 +1,6 @@
+// Client HTTP bas niveau de l'API Kasa. Utilisé uniquement côté serveur
+// (Server Components, Server Actions) : l'URL et les tokens ne partent jamais au navigateur.
+// Les appels métier sont regroupés par ressource dans les services (ex. lib/properties.ts).
 import type { ApiErrorBody } from "@/types/api";
 
 // URL du backend Kasa. Les appels partent du serveur Next : pas de souci de CORS.

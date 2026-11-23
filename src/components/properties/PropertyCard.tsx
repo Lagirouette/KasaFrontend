@@ -8,13 +8,15 @@ type Props = {
   property: Property;
   /** true pour les premières cartes visibles au chargement (LCP) */
   eager?: boolean;
+  /** Cœur plein (page favoris) */
+  isFavorite?: boolean;
 };
 
 /**
  * Carte d'un logement. Toute la carte est cliquable grâce au lien "étiré"
  * (after:absolute sur le titre), ce qui évite d'imbriquer le bouton favori dans un <a>.
  */
-export default function PropertyCard({ property, eager = false }: Props) {
+export default function PropertyCard({ property, eager = false, isFavorite = false }: Props) {
   return (
     <article className="bg-surface relative flex w-full flex-col overflow-hidden rounded-[10px]">
       <div className="bg-line relative aspect-[4/3.5]">
@@ -30,11 +32,15 @@ export default function PropertyCard({ property, eager = false }: Props) {
         )}
       </div>
 
-      {/* TODO sprint favoris : POST/DELETE /api/properties/:id/favorite (utilisateur connecté) */}
+      {/* TODO sprint favoris : POST/DELETE /api/properties/:id/favorite (utilisateur connecté).
+          Ce bouton deviendra un Client Component ; la carte reste un Server Component. */}
       <button
         type="button"
+        aria-pressed={isFavorite}
         aria-label={`Ajouter « ${property.title} » aux favoris`}
-        className="bg-surface text-dark absolute top-3 right-3 z-10 flex size-6 items-center justify-center rounded-[5px]"
+        className={`absolute top-3 right-3 z-10 flex size-6 items-center justify-center rounded-[5px] ${
+          isFavorite ? "bg-primary text-white" : "bg-surface text-dark"
+        }`}
       >
         <HeartIcon className="size-3" />
       </button>

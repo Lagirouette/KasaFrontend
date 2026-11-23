@@ -26,6 +26,26 @@ export interface Property {
   host?: Host;
 }
 
+export interface UserPublic {
+  id: number;
+  name: string;
+  picture: string | null;
+}
+
+export interface Rating {
+  id: number;
+  score: number;
+  comment: string | null;
+  created_at?: string;
+  user: UserPublic;
+}
+
+export interface RatingsSummary {
+  rating_avg: number;
+  ratings_count: number;
+  ratings: Rating[];
+}
+
 /** GET /api/properties/:id */
 export interface PropertyDetails extends Property {
   pictures: string[];

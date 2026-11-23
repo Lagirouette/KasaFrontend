@@ -15,6 +15,8 @@
   --color-surface: #ffffff;        /* cartes, header, footer */
   --color-line: #ece6e3;           /* bordures */
   --color-muted: #5f6672;          /* textes secondaires */
+  --color-chip: #f2f2f2;           /* tags, bouton "Retour" */
+  --color-danger: #b3261e;         /* messages d'erreur de formulaire */
 
   --font-sans: var(--font-inter);
 }

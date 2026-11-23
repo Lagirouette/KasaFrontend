@@ -30,7 +30,7 @@ export default function Header() {
               <span key={link.href} className="flex items-center gap-1">
                 {i > 0 && <span aria-hidden className="bg-line h-4 w-px" />}
                 <Link href={link.href} aria-label={link.label} className="p-1">
-                  {link.icon === "heart" ? <HeartIcon /> : <MessageIcon />}
+                  {link.icon === "heart" ? <HeartIcon outline /> : <MessageIcon />}
                 </Link>
               </span>
             ))}
