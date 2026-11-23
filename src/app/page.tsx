@@ -4,8 +4,6 @@ import HowItWorks from "@/components/home/HowItWorks";
 import PropertyList, { PropertyListSkeleton } from "@/components/properties/PropertyList";
 import PageHeading from "@/components/ui/PageHeading";
 
-// TODO : remplacer par la photo de la maquette (maison dans les dunes) exportée depuis Figma
-// vers public/images/hero.jpg, puis utiliser src="/images/hero.jpg".
 const HERO_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg";
 
@@ -24,7 +22,15 @@ export default function HomePage() {
       </PageHeading>
 
       <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[20px] md:aspect-[25/10]">
-        <Image src={HERO_IMAGE} alt="" fill preload sizes="(min-width: 1000px) 968px, 100vw" className="object-cover" />
+        <Image
+          src={HERO_IMAGE}
+          alt=""
+          fill
+          loading="eager"
+          fetchPriority="high"
+          sizes="(min-width: 1000px) 968px, 100vw"
+          className="object-cover"
+        />
       </div>
 
       <section id="logements" aria-label="Logements" className="mt-4 scroll-mt-4">

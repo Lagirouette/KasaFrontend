@@ -1,4 +1,3 @@
-/** Titre de page centré + texte d'introduction (accueil, à propos, favoris…) */
 export default function PageHeading({ title, children }: { title: React.ReactNode; children?: React.ReactNode }) {
   return (
     <div className="text-center">

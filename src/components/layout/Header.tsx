@@ -7,7 +7,6 @@ import { ADD_PROPERTY_LINK, ICON_LINKS, MAIN_LINKS } from "./nav";
 export default function Header() {
   return (
     <header className="relative md:px-4 md:pt-6">
-      {/* Desktop : barre blanche centrée, logo au milieu */}
       <div className="bg-surface mx-auto hidden h-14 max-w-[680px] grid-cols-[1fr_auto_1fr] items-center gap-6 rounded-[10px] px-8 md:grid">
         <nav aria-label="Navigation principale" className="flex gap-6 text-sm">
           {MAIN_LINKS.map((link) => (
@@ -38,7 +37,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile : maison à gauche, menu burger à droite */}
       <div className="bg-surface flex h-14 items-center justify-between px-4 md:hidden">
         <Link href="/" aria-label="Kasa, accueil">
           <LogoMark className="text-brand w-7" />

@@ -1,17 +1,11 @@
+import { cache } from "react";
 import { ApiError, apiFetch } from "./api";
 import type { Property, PropertyDetails, Rating } from "@/types/api";
 
-/**
- * Service "propriétés" : seul endroit qui connaît les routes /api/properties.
- * Les composants appellent ces fonctions, jamais fetch directement.
- */
-
-/** GET /api/properties : tous les logements (triés par titre côté API) */
 export function getProperties() {
   return apiFetch<Property[]>("/api/properties");
 }
 
-/** GET /api/properties/:id : détail d'un logement, ou null s'il n'existe pas */
 export async function getProperty(id: string) {
   try {
     return await apiFetch<PropertyDetails>(`/api/properties/${encodeURIComponent(id)}`);
@@ -21,7 +15,12 @@ export async function getProperty(id: string) {
   }
 }
 
-/** GET /api/properties/:id/ratings : notes d'un logement */
+export const getPropertyBySlug = cache(async (slug: string) => {
+  const properties = await getProperties();
+  const match = properties.find((property) => property.slug === slug);
+  return match ? getProperty(match.id) : null;
+});
+
 export function getPropertyRatings(id: string) {
   return apiFetch<Rating[]>(`/api/properties/${encodeURIComponent(id)}/ratings`);
 }

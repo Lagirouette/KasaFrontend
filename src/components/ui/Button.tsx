@@ -1,11 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
 
-/**
- * Boutons de la maquette : fond rouge brique, texte blanc, coins arrondis.
- * - Button : action (submit, clic) ; ButtonLink : navigation (rendu en <a>).
- * Même apparence, mais le bon élément HTML pour l'accessibilité.
- */
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md";
 

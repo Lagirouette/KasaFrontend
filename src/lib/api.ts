@@ -1,9 +1,5 @@
-// Client HTTP bas niveau de l'API Kasa. Utilisé uniquement côté serveur
-// (Server Components, Server Actions) : l'URL et les tokens ne partent jamais au navigateur.
-// Les appels métier sont regroupés par ressource dans les services (ex. lib/properties.ts).
 import type { ApiErrorBody } from "@/types/api";
 
-// URL du backend Kasa. Les appels partent du serveur Next : pas de souci de CORS.
 const API_URL = process.env.API_URL ?? "http://localhost:3000";
 
 export class ApiError extends Error {
@@ -16,14 +12,9 @@ export class ApiError extends Error {
 type FetchOptions = {
   method?: "GET" | "POST" | "PATCH" | "DELETE";
   body?: unknown;
-  /** JWT à envoyer dans l'en-tête Authorization (routes protégées) */
   token?: string;
 };
 
-/**
- * Appelle l'API Kasa et renvoie le JSON de la réponse.
- * Le backend renvoie directement les données, ou { error } en cas d'échec.
- */
 export async function apiFetch<T>(
   path: string,
   { method = "GET", body, token }: FetchOptions = {}

@@ -2,11 +2,6 @@
 
 import "./globals.css";
 
-/**
- * Dernier filet de sécurité : erreur dans le layout racine lui-même.
- * Il remplace tout le document, il doit donc définir <html> et <body>
- * (et importer les styles, car layout.tsx n'est pas rendu).
- */
 export default function GlobalError({ error, retry }: { error: unknown; retry: () => void }) {
   console.error(error);
   return (

@@ -3,7 +3,6 @@ import ErrorState from "@/components/ui/ErrorState";
 
 export const metadata: Metadata = { title: "Page introuvable" };
 
-// URL qui ne correspond à aucune route (ou notFound() appelé par une page)
 export default function NotFound() {
   return (
     <ErrorState

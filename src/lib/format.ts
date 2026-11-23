@@ -4,7 +4,6 @@ const priceFormatter = new Intl.NumberFormat("fr-FR", {
   maximumFractionDigits: 0,
 });
 
-/** 100 → "100 €" */
 export function formatPrice(value: number) {
   return priceFormatter.format(value);
 }

@@ -12,11 +12,8 @@ export const metadata: Metadata = {
     "Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.",
 };
 
-/** Mise en page commune à toutes les pages : header, contenu, footer. */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // suppressHydrationWarning : certaines extensions de navigateur ajoutent des attributs
-    // sur <html> avant l'hydratation. Ne masque que les écarts d'attributs de cette balise.
     <html lang="fr" suppressHydrationWarning className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <a

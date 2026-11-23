@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-/** Pastille grise "← Retour…" en haut des pages (logement, ajout, messagerie) */
 export default function BackLink({ href = "/", children = "Retour" }: { href?: string; children?: React.ReactNode }) {
   return (
     <Link

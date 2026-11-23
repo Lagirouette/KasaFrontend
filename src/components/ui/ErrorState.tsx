@@ -1,18 +1,13 @@
 import { ButtonLink } from "./Button";
 
 type Props = {
-  /** Gros libellé décoratif : "404", "Oups"… */
   code: string;
-  /** Titre lu par les lecteurs d'écran (le code seul n'est pas explicite) */
   title: string;
   message: string;
-  /** Bouton supplémentaire (ex. "Réessayer" sur les pages d'erreur) */
   action?: React.ReactNode;
-  /** Petite ligne d'information (ex. référence de l'erreur pour les logs) */
   details?: string;
 };
 
-/** Contenu commun des pages 404 et d'erreur (maquette "404") */
 export default function ErrorState({ code, title, message, action, details }: Props) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">

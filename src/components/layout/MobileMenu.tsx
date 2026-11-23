@@ -10,7 +10,6 @@ const LINKS = [...MAIN_LINKS, ADD_PROPERTY_LINK, ...ICON_LINKS];
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
 
-  // Échap ferme le menu
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {

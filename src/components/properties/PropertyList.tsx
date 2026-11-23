@@ -3,7 +3,6 @@ import PropertyCard from "./PropertyCard";
 
 const GRID = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3";
 
-/** Liste des logements, chargée depuis l'API (Server Component). */
 export default async function PropertyList() {
   const properties = await getProperties();
 
@@ -22,10 +21,9 @@ export default async function PropertyList() {
   );
 }
 
-/** Squelette affiché pendant le chargement */
 export function PropertyListSkeleton() {
   return (
-    <div className={GRID} aria-busy="true" aria-label="Chargement des logements">
+    <div className={GRID} role="status" aria-label="Chargement des logements">
       {Array.from({ length: 6 }, (_, i) => (
         <div key={i} className="bg-surface overflow-hidden rounded-[10px]">
           <div className="bg-line aspect-[4/3.5] animate-pulse" />

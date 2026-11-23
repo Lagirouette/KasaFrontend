@@ -4,11 +4,6 @@ import { useEffect } from "react";
 import { Button } from "./Button";
 import ErrorState from "./ErrorState";
 
-/**
- * Contenu des fichiers error.tsx (Next 16 : props `error` et `retry`).
- * En production, le message des erreurs serveur est masqué par Next.js :
- * on affiche donc un texte générique, et l'identifiant `digest` pour les logs.
- */
 export default function ErrorView({ error, retry }: { error: unknown; retry: () => void }) {
   useEffect(() => {
     console.error(error);

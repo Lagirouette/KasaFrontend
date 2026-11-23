@@ -6,16 +6,10 @@ import type { Property } from "@/types/api";
 
 type Props = {
   property: Property;
-  /** true pour les premières cartes visibles au chargement (LCP) */
   eager?: boolean;
-  /** Cœur plein (page favoris) */
   isFavorite?: boolean;
 };
 
-/**
- * Carte d'un logement. Toute la carte est cliquable grâce au lien "étiré"
- * (after:absolute sur le titre), ce qui évite d'imbriquer le bouton favori dans un <a>.
- */
 export default function PropertyCard({ property, eager = false, isFavorite = false }: Props) {
   return (
     <article className="bg-surface relative flex w-full flex-col overflow-hidden rounded-[10px]">
@@ -25,15 +19,13 @@ export default function PropertyCard({ property, eager = false, isFavorite = fal
             src={property.cover}
             alt=""
             fill
-            sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
             loading={eager ? "eager" : "lazy"}
             className="object-cover"
           />
         )}
       </div>
 
-      {/* TODO sprint favoris : POST/DELETE /api/properties/:id/favorite (utilisateur connecté).
-          Ce bouton deviendra un Client Component ; la carte reste un Server Component. */}
       <button
         type="button"
         aria-pressed={isFavorite}
@@ -47,7 +39,7 @@ export default function PropertyCard({ property, eager = false, isFavorite = fal
 
       <div className="flex flex-1 flex-col px-3 pt-3 pb-4">
         <h3 className="text-sm font-medium">
-          <Link href={`/logements/${property.id}`} className="after:absolute after:inset-0">
+          <Link href={`/logements/${property.slug}`} className="after:absolute after:inset-0">
             {property.title}
           </Link>
         </h3>

@@ -1,4 +1,3 @@
-// Liens du header, partagés entre la version desktop et le menu mobile.
 export const MAIN_LINKS = [
   { href: "/", label: "Accueil" },
   { href: "/a-propos", label: "À propos" },

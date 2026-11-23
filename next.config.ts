@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   images: {
-    // Photos des logements et des hôtes (données de démo du backend)
     remotePatterns: [
       {
         protocol: "https",

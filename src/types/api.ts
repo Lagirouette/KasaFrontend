@@ -1,5 +1,3 @@
-// Types calqués sur les réponses de l'API Kasa (Express + SQLite), voir public/openapi.json du backend.
-
 export interface ApiErrorBody {
   error: string;
 }
@@ -12,7 +10,6 @@ export interface Host {
   picture: string | null;
 }
 
-/** Élément de GET /api/properties */
 export interface Property {
   id: string;
   slug: string;
@@ -46,7 +43,6 @@ export interface RatingsSummary {
   ratings: Rating[];
 }
 
-/** GET /api/properties/:id */
 export interface PropertyDetails extends Property {
   pictures: string[];
   equipments: string[];
