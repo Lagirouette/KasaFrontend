@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HeartIcon } from "@/components/icons";
+import FavoriteButton from "@/components/favorites/FavoriteButton";
 import { formatPrice } from "@/lib/format";
 import type { Property } from "@/types/api";
 
 type Props = {
   property: Property;
   eager?: boolean;
-  isFavorite?: boolean;
 };
 
-export default function PropertyCard({ property, eager = false, isFavorite = false }: Props) {
+export default function PropertyCard({ property, eager = false }: Props) {
   return (
     <article className="bg-surface relative flex w-full flex-col overflow-hidden rounded-[10px]">
       <div className="bg-line relative aspect-[4/3.5]">
@@ -26,16 +25,7 @@ export default function PropertyCard({ property, eager = false, isFavorite = fal
         )}
       </div>
 
-      <button
-        type="button"
-        aria-pressed={isFavorite}
-        aria-label={`Ajouter « ${property.title} » aux favoris`}
-        className={`absolute top-3 right-3 z-10 flex size-6 items-center justify-center rounded-[5px] ${
-          isFavorite ? "bg-primary text-white" : "bg-surface text-dark"
-        }`}
-      >
-        <HeartIcon className="size-3" />
-      </button>
+      <FavoriteButton propertyId={property.id} title={property.title} className="absolute top-3 right-3 z-10" />
 
       <div className="flex flex-1 flex-col px-3 pt-3 pb-4">
         <h3 className="text-sm font-medium">

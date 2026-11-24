@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Suspense } from "react";
 import HowItWorks from "@/components/home/HowItWorks";
-import PropertyList, { PropertyListSkeleton } from "@/components/properties/PropertyList";
+import { PropertyGridSkeleton } from "@/components/properties/PropertyGrid";
+import PropertyList from "@/components/properties/PropertyList";
 import PageHeading from "@/components/ui/PageHeading";
 
 const HERO_IMAGE =
@@ -34,7 +35,7 @@ export default function HomePage() {
       </div>
 
       <section id="logements" aria-label="Logements" className="mt-4 scroll-mt-4">
-        <Suspense fallback={<PropertyListSkeleton />}>
+        <Suspense fallback={<PropertyGridSkeleton />}>
           <PropertyList />
         </Suspense>
       </section>
