@@ -16,7 +16,7 @@ export default function PropertyCard({ property, eager = false }: Props) {
         {property.cover && (
           <Image
             src={property.cover}
-            alt=""
+            alt={`Photo du logement « ${property.title} »${property.location ? `, ${property.location}` : ""}`}
             fill
             sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
             loading={eager ? "eager" : "lazy"}

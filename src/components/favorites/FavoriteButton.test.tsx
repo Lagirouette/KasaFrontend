@@ -1,14 +1,35 @@
-import { render, screen } from "@testing-library/react";
+import { render as rtlRender, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
+import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { FAVORITES_KEY } from "@/lib/favorites";
 import FavoriteButton from "./FavoriteButton";
+
+function render(ui: React.ReactElement) {
+  return rtlRender(ui, { wrapper: FavoritesProvider });
+}
 
 beforeEach(() => {
   window.localStorage.clear();
 });
 
 describe("FavoriteButton", () => {
+  it("affiche un cœur rouge quand le logement est en favori", async () => {
+    const user = userEvent.setup();
+    render(<FavoriteButton propertyId="c67ab8a7" title="Appartement cosy" />);
+
+    const button = screen.getByRole("button", { name: /Ajouter/ });
+    expect(button).not.toHaveClass("text-[#d62d20]");
+
+    await user.click(button);
+
+    expect(screen.getByRole("button", { name: /Retirer/ })).toHaveClass("text-[#d62d20]");
+  });
+
+  it("ne peut pas être utilisé sans FavoritesProvider", () => {
+    expect(() => rtlRender(<FavoriteButton propertyId="a" title="A" />)).toThrow(/FavoritesProvider/);
+  });
+
   it("n'est pas actif par défaut", () => {
     render(<FavoriteButton propertyId="c67ab8a7" title="Appartement cosy" />);
 

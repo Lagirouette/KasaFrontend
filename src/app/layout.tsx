@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -22,11 +23,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Aller au contenu
         </a>
-        <Header />
-        <main id="contenu" className="flex flex-1 flex-col">
-          {children}
-        </main>
-        <Footer />
+        <FavoritesProvider>
+          <Header />
+          <main id="contenu" className="flex flex-1 flex-col">
+            {children}
+          </main>
+          <Footer />
+        </FavoritesProvider>
       </body>
     </html>
   );

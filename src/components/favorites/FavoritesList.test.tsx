@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render as rtlRender, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
+import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { FAVORITES_KEY } from "@/lib/favorites";
 import type { Property } from "@/types/api";
 import FavoritesList from "./FavoritesList";
@@ -24,6 +25,10 @@ const PROPERTIES = [
   makeProperty("b", "Studio de charme"),
   makeProperty("c", "Loft de luxe"),
 ];
+
+function render(ui: React.ReactElement) {
+  return rtlRender(ui, { wrapper: FavoritesProvider });
+}
 
 beforeEach(() => {
   window.localStorage.clear();
@@ -64,5 +69,6 @@ describe("FavoritesList", () => {
 
     expect(screen.queryByRole("heading", { name: "Appartement cosy" })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Studio de charme" })).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("1 logement dans vos favoris");
   });
 });

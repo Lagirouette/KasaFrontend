@@ -10,6 +10,9 @@ type Props = {
 };
 
 export default function HostCard({ host, rating }: Props) {
+  const hostName = host?.name ?? "Hôte Kasa";
+  const messagesHref = host ? `/messages?hote=${host.id}` : "/messages";
+
   return (
     <Card as="aside" aria-labelledby="host-title">
       <h2 id="host-title" className="text-sm font-medium">
@@ -20,11 +23,11 @@ export default function HostCard({ host, rating }: Props) {
         <div className="bg-line relative size-14 shrink-0 overflow-hidden rounded-[8px]">
           {host?.picture && <Image src={host.picture} alt="" fill sizes="56px" className="object-cover" />}
         </div>
-        <p className="text-sm">{host?.name ?? "Hôte Kasa"}</p>
+        <p className="text-sm">{hostName}</p>
         {rating !== null && (
           <p className="bg-chip ml-auto flex items-center gap-1 rounded-[5px] px-2 py-1 text-xs">
             <StarIcon className="text-primary size-3.5" />
-            <span className="sr-only">Note :</span>
+            <span className="sr-only">Note : </span>
             {Math.round(rating)}
             <span className="sr-only"> sur 5</span>
           </p>
@@ -32,11 +35,11 @@ export default function HostCard({ host, rating }: Props) {
       </div>
 
       <div className="mt-5 flex flex-col gap-2">
-        <ButtonLink href="/messages" size="sm">
-          Contacter l&apos;hôte
+        <ButtonLink href={messagesHref} size="sm">
+          Contacter l&apos;hôte <span className="sr-only">{hostName}</span>
         </ButtonLink>
-        <ButtonLink href="/messages" size="sm">
-          Envoyer un message
+        <ButtonLink href={messagesHref} size="sm">
+          Envoyer un message <span className="sr-only">à {hostName}</span>
         </ButtonLink>
       </div>
     </Card>

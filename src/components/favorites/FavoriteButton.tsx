@@ -19,11 +19,11 @@ export default function FavoriteButton({ propertyId, title, className = "" }: Pr
       onClick={() => toggleFavorite(propertyId)}
       aria-pressed={active}
       aria-label={active ? `Retirer « ${title} » des favoris` : `Ajouter « ${title} » aux favoris`}
-      className={`flex size-6 items-center justify-center rounded-[5px] transition ${
-        active ? "bg-primary text-white" : "bg-surface text-dark hover:text-primary"
+      className={`bg-surface flex size-7 items-center justify-center rounded-[5px] shadow-sm transition ${
+        active ? "text-[#d62d20]" : "text-dark hover:text-[#d62d20]"
       } ${className}`}
     >
-      <HeartIcon className="size-3" />
+      <HeartIcon outline={!active} className={`size-3.5 transition-transform duration-200 ${active ? "scale-110" : ""}`} />
     </button>
   );
 }

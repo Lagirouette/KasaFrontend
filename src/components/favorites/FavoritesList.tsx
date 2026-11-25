@@ -23,5 +23,14 @@ export default function FavoritesList({ properties }: { properties: Property[] }
     );
   }
 
-  return <PropertyGrid properties={favoriteProperties} />;
+  const count = favoriteProperties.length;
+
+  return (
+    <>
+      <p role="status" className="text-muted mb-4 text-sm">
+        {count} logement{count > 1 ? "s" : ""} dans vos favoris
+      </p>
+      <PropertyGrid properties={favoriteProperties} />
+    </>
+  );
 }

@@ -92,6 +92,13 @@ describe("Carousel", () => {
       expect(mainImage()).toHaveAttribute("src", "/5.jpg");
     });
 
+    it("garde une hauteur fixe et recadre les images au centre", () => {
+      render(<Carousel pictures={PICTURES} title="Appartement cosy" />);
+
+      expect(screen.getByTestId("carousel-frame")).toHaveClass("h-[300px]", "md:h-[400px]");
+      expect(mainImage()).toHaveClass("object-cover", "object-center");
+    });
+
     it("affiche une seule miniature quand il y a deux images", () => {
       render(<Carousel pictures={["/1.jpg", "/2.jpg"]} title="Appartement cosy" />);
 

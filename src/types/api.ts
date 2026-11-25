@@ -4,6 +4,19 @@ export interface ApiErrorBody {
 
 export type Role = "client" | "owner" | "admin";
 
+export interface User {
+  id: number;
+  name: string;
+  email: string | null;
+  picture: string | null;
+  role: Role;
+}
+
+export interface AuthPayload {
+  token: string;
+  user: User;
+}
+
 export interface Host {
   id: number;
   name: string;

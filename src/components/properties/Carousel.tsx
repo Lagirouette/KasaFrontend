@@ -40,9 +40,8 @@ export default function Carousel({ pictures, title }: Props) {
       className={hasMany ? "grid gap-2 md:grid-cols-2" : ""}
     >
       <div
-        className={`bg-line relative aspect-[4/3.6] overflow-hidden rounded-[10px] ${
-          hasMany ? "md:aspect-[7/8]" : "md:aspect-[16/10]"
-        }`}
+        data-testid="carousel-frame"
+        className="bg-line relative h-[300px] overflow-hidden rounded-[10px] sm:h-[360px] md:h-[400px]"
       >
         {pictures.map((src, index) => {
           const isCurrent = index === current;
@@ -60,7 +59,9 @@ export default function Carousel({ pictures, title }: Props) {
                   ? "(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw"
                   : "(min-width: 1024px) 680px, 100vw"
               }
-              className={`object-cover transition-opacity duration-300 ${isCurrent ? "opacity-100" : "opacity-0"}`}
+              className={`object-cover object-center transition-[opacity,transform] duration-500 ease-out ${
+                isCurrent ? "scale-100 opacity-100" : "scale-[1.02] opacity-0"
+              }`}
             />
           );
         })}
@@ -94,16 +95,22 @@ export default function Carousel({ pictures, title }: Props) {
       </div>
 
       {hasMany && (
-        <ul aria-label="Autres photos" className="grid grid-cols-4 gap-2 md:grid-cols-2 md:grid-rows-2">
+        <ul aria-label="Autres photos" className="grid grid-cols-4 gap-2 md:h-[400px] md:grid-cols-2 md:grid-rows-2">
           {thumbnails.map((index) => (
-            <li key={index} className="relative aspect-square md:aspect-auto">
+            <li key={index} className="relative aspect-square md:aspect-auto md:h-full">
               <button
                 type="button"
                 onClick={() => goTo(index)}
                 aria-label={`Afficher la photo ${index + 1}`}
                 className="bg-line relative block size-full overflow-hidden rounded-[10px] transition hover:opacity-80"
               >
-                <Image src={pictures[index]} alt="" fill sizes="(min-width: 768px) 170px, 25vw" className="object-cover" />
+                <Image
+                  src={pictures[index]}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 170px, 25vw"
+                  className="object-cover object-center"
+                />
               </button>
             </li>
           ))}
