@@ -1,15 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Kasa", template: "%s | Kasa" },
-  description:
-    "Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: `${SITE_NAME} : locations d'appartements et de maisons entre particuliers`, template: `%s | ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fff9f7",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -23,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Aller au contenu
         </a>
         <Header />
-        <main id="contenu" className="flex flex-1 flex-col">
+        <main id="contenu" tabIndex={-1} className="flex flex-1 flex-col">
           {children}
         </main>
         <Footer />

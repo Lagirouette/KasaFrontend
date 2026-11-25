@@ -8,7 +8,7 @@ type BaseProps = {
 };
 
 const FIELD =
-  "border-line focus:border-primary aria-[invalid=true]:border-danger placeholder:text-muted w-full rounded-[5px] border bg-white px-3 text-sm outline-none";
+  "border-field focus:border-primary aria-[invalid=true]:border-danger placeholder:text-muted w-full rounded-[5px] border bg-white px-3 text-sm outline-none";
 
 export default function TextField({ id, label, error, hint, className = "", ...props }: BaseProps & ComponentProps<"input">) {
   return (

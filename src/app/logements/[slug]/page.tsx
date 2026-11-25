@@ -3,16 +3,37 @@ import { notFound } from "next/navigation";
 import Carousel from "@/components/properties/Carousel";
 import HostCard from "@/components/properties/HostCard";
 import PropertyInfo from "@/components/properties/PropertyInfo";
+import JsonLd from "@/components/seo/JsonLd";
 import BackLink from "@/components/ui/BackLink";
-import { getPropertyBySlug } from "@/lib/properties";
+import { getProperties, getPropertyBySlug } from "@/lib/properties";
+import { breadcrumbSchema, propertySchema } from "@/lib/structured-data";
+
+export async function generateStaticParams() {
+  const properties = await getProperties();
+  if (properties.length === 0) return [{ slug: "__aucun-logement__" }];
+  return properties.map((property) => ({ slug: property.slug }));
+}
 
 export async function generateMetadata({ params }: PageProps<"/logements/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const property = await getPropertyBySlug(slug);
-  if (!property) return { title: "Logement introuvable" };
+  if (!property) return { title: "Logement introuvable", robots: { index: false } };
+
+  const description =
+    property.description ?? `${property.title}${property.location ? `, ${property.location}` : ""} sur Kasa.`;
+  const path = `/logements/${property.slug}`;
+
   return {
     title: property.title,
-    description: property.description ?? undefined,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      url: path,
+      title: property.title,
+      description,
+      images: property.cover ? [property.cover] : undefined,
+    },
   };
 }
 
@@ -25,6 +46,16 @@ export default async function PropertyPage({ params }: PageProps<"/logements/[sl
 
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-6 pb-16 md:max-w-[1000px] md:pt-16">
+      <JsonLd
+        data={[
+          propertySchema(property),
+          breadcrumbSchema([
+            { name: "Accueil", path: "/" },
+            { name: property.title, path: `/logements/${property.slug}` },
+          ]),
+        ]}
+      />
+
       <BackLink href="/#logements">Retour aux annonces</BackLink>
 
       <div className="mt-4 grid items-start gap-4 md:mt-8 lg:grid-cols-[minmax(0,1fr)_300px]">

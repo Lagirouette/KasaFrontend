@@ -1,16 +1,26 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
 import HowItWorks from "@/components/home/HowItWorks";
 import { PropertyGridSkeleton } from "@/components/properties/PropertyGrid";
 import PropertyList from "@/components/properties/PropertyList";
+import JsonLd from "@/components/seo/JsonLd";
 import PageHeading from "@/components/ui/PageHeading";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const HERO_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/", images: [HERO_IMAGE] },
+};
+
 export default function HomePage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">
+      <JsonLd data={[organizationSchema(), websiteSchema()]} />
+
       <PageHeading
         title={
           <>
@@ -29,12 +39,15 @@ export default function HomePage() {
           fill
           loading="eager"
           fetchPriority="high"
-          sizes="(min-width: 1000px) 968px, 100vw"
+          sizes="(min-width: 1000px) 968px, calc(100vw - 32px)"
           className="object-cover"
         />
       </div>
 
-      <section id="logements" aria-label="Logements" className="mt-4 scroll-mt-4">
+      <section id="logements" aria-labelledby="logements-title" className="mt-4 scroll-mt-4">
+        <h2 id="logements-title" className="sr-only">
+          Nos logements
+        </h2>
         <Suspense fallback={<PropertyGridSkeleton />}>
           <PropertyList />
         </Suspense>

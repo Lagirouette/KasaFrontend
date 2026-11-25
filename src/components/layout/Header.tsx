@@ -16,8 +16,11 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/" aria-label="Kasa, accueil">
-          <Logo className="text-brand w-[96px]" />
+        <Link href="/">
+          <span aria-hidden>
+            <Logo className="text-brand w-[96px]" />
+          </span>
+          <span className="sr-only">Kasa, accueil</span>
         </Link>
 
         <div className="flex items-center justify-end gap-4 text-sm">
