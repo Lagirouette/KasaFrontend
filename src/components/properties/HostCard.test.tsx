@@ -24,6 +24,12 @@ describe("HostCard", () => {
     expect(screen.getByText(/Note :/).parentElement).toHaveTextContent("Note : 5 sur 5");
   });
 
+  it("n'affiche pas de note pour un logement sans avis", () => {
+    render(<HostCard host={HOST} rating={0} />);
+
+    expect(screen.queryByText(/Note :/)).not.toBeInTheDocument();
+  });
+
   it("renvoie vers la messagerie même sans hôte connu", () => {
     render(<HostCard rating={null} />);
 

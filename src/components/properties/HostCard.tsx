@@ -24,7 +24,7 @@ export default function HostCard({ host, rating }: Props) {
           {host?.picture && <Image src={host.picture} alt="" fill sizes="56px" className="object-cover" />}
         </div>
         <p className="text-sm">{hostName}</p>
-        {rating !== null && (
+        {rating !== null && rating > 0 && (
           <p className="bg-chip ml-auto flex items-center gap-1 rounded-[5px] px-2 py-1 text-xs">
             <StarIcon className="text-primary size-3.5" />
             <span className="sr-only">Note : </span>

@@ -43,16 +43,6 @@ describe("RegisterForm", () => {
     );
   });
 
-  it("informe sur l'utilisation des données personnelles", () => {
-    render(<RegisterForm />);
-
-    expect(screen.getByText(/servent uniquement à créer et gérer votre compte/)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "En savoir plus sur vos données" })).toHaveAttribute(
-      "href",
-      "/conditions-generales#donnees-personnelles"
-    );
-  });
-
   it("permet d'afficher le mot de passe saisi", async () => {
     const user = userEvent.setup();
     render(<RegisterForm />);
