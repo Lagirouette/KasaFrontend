@@ -84,7 +84,7 @@ export default function ImageUploadField({
           }}
           aria-invalid={invalidFile || !!message}
           aria-describedby={`${id}-hint${message ? ` ${id}-error` : ""}`}
-          className="border-line focus:border-primary aria-[invalid=true]:border-danger h-10 min-w-0 flex-1 rounded-[5px] border bg-white px-3 text-sm outline-none"
+          className="border-field focus:border-primary aria-[invalid=true]:border-danger h-10 min-w-0 flex-1 rounded-[5px] border bg-white px-3 text-sm outline-none"
         />
         <button
           type="button"

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/messages"],
+      disallow: ["/messages", "/logements/nouveau", "/inscription/bienvenue", "/deconnexion", "/api/"],
     },
     sitemap: absoluteUrl("/sitemap.xml"),
   };

@@ -7,6 +7,7 @@ import { safeRedirect } from "@/lib/redirect";
 export const metadata: Metadata = {
   title: "Connexion",
   description: "Connectez-vous à Kasa pour retrouver vos réservations, vos annonces et vos séjours.",
+  alternates: { canonical: "/connexion" },
 };
 
 export default function LoginPage({ searchParams }: PageProps<"/connexion">) {

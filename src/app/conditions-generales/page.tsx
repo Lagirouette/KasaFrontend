@@ -6,6 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Conditions générales et données personnelles",
   description: "Conditions générales d'utilisation de Kasa et informations sur le traitement de vos données personnelles.",
+  alternates: { canonical: "/conditions-generales" },
 };
 
 const SECTION = "flex flex-col gap-3 text-sm leading-relaxed";

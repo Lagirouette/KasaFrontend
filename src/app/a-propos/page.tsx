@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import JsonLd from "@/components/seo/JsonLd";
 import PageHeading from "@/components/ui/PageHeading";
+import { breadcrumbSchema } from "@/lib/structured-data";
 
 const HERO_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-15-1.jpg";
@@ -17,11 +19,20 @@ export const metadata: Metadata = {
   title: "À propos",
   description:
     "Kasa met en relation des voyageurs en quête d'authenticité avec des hôtes passionnés qui aiment partager leur région et leurs bonnes adresses.",
+  alternates: { canonical: "/a-propos" },
+  openGraph: { url: "/a-propos", images: [HERO_IMAGE] },
 };
 
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Accueil", path: "/" },
+          { name: "À propos", path: "/a-propos" },
+        ])}
+      />
+
       <PageHeading title="À propos">
         <p>Chez Kasa, nous croyons que chaque voyage mérite un lieu unique où se sentir bien.</p>
         <p>

@@ -7,6 +7,7 @@ import { safeRedirect } from "@/lib/redirect";
 export const metadata: Metadata = {
   title: "Inscription",
   description: "Créez votre compte Kasa pour réserver des logements uniques et partager vos propres lieux.",
+  alternates: { canonical: "/inscription" },
 };
 
 export default function RegisterPage({ searchParams }: PageProps<"/inscription">) {

@@ -22,7 +22,7 @@ export default function PasswordField({ id, label, error, ...props }: Props) {
           type={visible ? "text" : "password"}
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="border-line focus:border-primary aria-[invalid=true]:border-danger h-10 w-full rounded-[5px] border bg-white pr-24 pl-3 text-sm outline-none"
+          className="border-field focus:border-primary aria-[invalid=true]:border-danger h-10 w-full rounded-[5px] border bg-white pr-24 pl-3 text-sm outline-none"
           {...props}
         />
         <button

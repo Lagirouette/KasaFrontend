@@ -13,6 +13,7 @@ Refonte du site Kasa en Next.js (App Router, TypeScript, Tailwind CSS 4), branch
 2. Configurer le front : copier `.env.example` en `.env.local`.
    - `API_URL` : URL du backend (`http://localhost:3000`)
    - `SITE_URL` : URL publique du site, utilisée pour le sitemap, les URL canoniques et les données structurées
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM` : serveur d'envoi de l'email de confirmation d'inscription (sans SMTP, l'email est affiché dans la console en développement)
 3. Lancer le front (port 3001) :
    ```bash
    npm install
@@ -43,8 +44,10 @@ npm start
 ```
 src/
   app/          routes (App Router), layout, pages d'erreur
-  components/   composants React (layout/, properties/, favorites/, home/, seo/, ui/)
+  components/   composants React (auth/, layout/, messages/, properties/, favorites/, home/, seo/, ui/)
+  contexts/     contexte React des favoris
   hooks/        hooks React (favoris)
-  lib/          appels API, favoris, données structurées, formatage
+  lib/          appels API, session, validation, emails, favoris, données structurées, formatage
+  proxy.ts      protection des pages réservées aux utilisateurs connectés
   types/        types des réponses de l'API
 ```

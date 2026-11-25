@@ -1,7 +1,7 @@
 export default function MessageComposer() {
   return (
     <form className="border-line bg-surface border-t p-4 md:p-5" aria-describedby="composer-note">
-      <div className="border-line flex flex-col gap-2 rounded-[10px] border p-3">
+      <div className="border-field flex flex-col gap-2 rounded-[10px] border p-3">
         <label htmlFor="message" className="sr-only">
           Votre message
         </label>

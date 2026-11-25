@@ -22,6 +22,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    {
+      url: absoluteUrl("/a-propos"),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: absoluteUrl("/inscription"),
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
+      url: absoluteUrl("/connexion"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: absoluteUrl("/conditions-generales"),
+      changeFrequency: "yearly",
+      priority: 0.1,
+    },
     ...properties.map((property) => ({
       url: absoluteUrl(`/logements/${property.slug}`),
       changeFrequency: "weekly" as const,

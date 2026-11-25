@@ -352,7 +352,7 @@ export default function PropertyForm({ defaultHostName = "" }: { defaultHostName
                 onKeyDown={onCustomTagKeyDown}
                 placeholder="Nouveau tag"
                 maxLength={30}
-                className="border-line focus:border-primary placeholder:text-muted h-10 min-w-0 flex-1 rounded-[5px] border bg-white px-3 text-sm outline-none"
+                className="border-field focus:border-primary placeholder:text-muted h-10 min-w-0 flex-1 rounded-[5px] border bg-white px-3 text-sm outline-none"
               />
               <button
                 type="button"
