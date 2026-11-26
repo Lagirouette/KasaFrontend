@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "Kasa — Front-end",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/vitest.setup.tsx"],
+  "out": "docs",
+  "readme": "README.md",
+  "tsconfig": "tsconfig.json",
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "plugin": ["typedoc-plugin-missing-exports"],
+  "placeInternalsInOwningModule": true,
+  "intentionallyNotExported": ["__global.PageProps"],
+  "sort": ["source-order"],
+  "navigation": {
+    "includeCategories": false,
+    "includeGroups": false
+  }
+}

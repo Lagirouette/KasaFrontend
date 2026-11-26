@@ -1,3 +1,7 @@
+/**
+ * Page d'ajout d'un logement (`/logements/nouveau`), réservée aux utilisateurs connectés.
+ * @module app/logements/nouveau
+ */
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import PropertyForm from "@/components/properties/form/PropertyForm";
@@ -6,12 +10,14 @@ import { ButtonLink } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { getSessionUser } from "@/lib/session";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   title: "Ajouter une propriété",
   description: "Proposez votre logement sur Kasa : photos, équipements, catégories et prix par nuit.",
   robots: { index: false },
 };
 
+/** Affiche le formulaire d'ajout d'un logement. */
 export default function NewPropertyPage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-6 pb-16 md:max-w-[1000px] md:pt-10">
@@ -23,6 +29,7 @@ export default function NewPropertyPage() {
   );
 }
 
+/** Lit l'utilisateur connecté : affiche le formulaire avec son nom prérempli, ou un message si son compte n'est pas propriétaire. */
 async function PropertyFormForUser() {
   const user = await getSessionUser();
 

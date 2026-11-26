@@ -1,9 +1,14 @@
+/**
+ * En-tête du site.
+ * @module components/layout/Header
+ */
 import Link from "next/link";
 import Logo, { LogoMark } from "@/components/Logo";
 import { HeartIcon, MessageIcon } from "@/components/icons";
 import MobileMenu from "./MobileMenu";
 import { ADD_PROPERTY_LINK, ICON_LINKS, MAIN_LINKS } from "./nav";
 
+/** En-tête avec la navigation principale en desktop et le menu repliable en mobile. */
 export default function Header() {
   return (
     <header className="relative md:px-4 md:pt-6">

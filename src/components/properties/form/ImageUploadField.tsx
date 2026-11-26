@@ -1,22 +1,42 @@
+/**
+ * Champ d'ajout d'une image, par URL ou par envoi de fichier.
+ * @module components/properties/form/ImageUploadField
+ */
 "use client";
 
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { IMAGE_RULES, IMAGE_TYPES, validateImageFile } from "@/lib/property-form";
 
+/** Propriétés de {@link ImageUploadField}. */
 type Props = {
+  /** Identifiant du champ. */
   id: string;
+  /** Libellé du champ. */
   label: string;
+  /** Nom du champ dans le formulaire. */
   name: string;
+  /** URL de l'image. */
   value: string;
+  /** Appelée quand l'URL change, après saisie ou envoi d'un fichier. */
   onChange: (value: string) => void;
+  /** Appelée au début et à la fin d'un envoi de fichier. */
   onUploadingChange?: (uploading: boolean) => void;
+  /** Usage de l'image, transmis à l'API d'envoi. */
   purpose: "property-cover" | "property-picture" | "user-picture";
+  /** Message d'erreur du formulaire. */
   error?: string;
+  /** `true` si le champ est obligatoire. */
   required?: boolean;
+  /** Appelée par le bouton de suppression du champ, s'il est affiché. */
   onRemove?: () => void;
 };
 
+/**
+ * Champ d'image avec bouton « + » pour envoyer un fichier et aperçu de l'image choisie.
+ *
+ * Le fichier est vérifié avant l'envoi : la consigne de format s'affiche en rouge seulement si le fichier est refusé.
+ */
 export default function ImageUploadField({
   id,
   label,
@@ -36,6 +56,11 @@ export default function ImageUploadField({
   const message = invalidFile ? undefined : (uploadError ?? error);
   const hasPreview = /^https?:\/\//.test(value);
 
+  /**
+   * Vérifie puis envoie un fichier à la route `/api/uploads`, et récupère son URL.
+   *
+   * @param file Fichier choisi par l'utilisateur.
+   */
   async function upload(file: File) {
     if (validateImageFile(file)) {
       setUploadError(undefined);

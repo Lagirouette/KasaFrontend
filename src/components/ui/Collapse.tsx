@@ -1,14 +1,27 @@
+/**
+ * Section repliable.
+ * @module components/ui/Collapse
+ */
 "use client";
 
 import { useId, useState } from "react";
 import { ChevronDownIcon } from "@/components/icons";
 
+/** Propriétés de {@link Collapse}. */
 type Props = {
+  /** Titre de la section, affiché dans le bouton. */
   title: string;
+  /** Contenu de la section. */
   children: React.ReactNode;
+  /** `true` pour ouvrir la section au chargement, valeur par défaut. */
   defaultOpen?: boolean;
 };
 
+/**
+ * Section qui s'ouvre et se ferme avec une animation.
+ *
+ * L'état est annoncé avec `aria-expanded`, et le contenu fermé est rendu inerte.
+ */
 export default function Collapse({ title, children, defaultOpen = true }: Props) {
   const [open, setOpen] = useState(defaultOpen);
   const contentId = useId();

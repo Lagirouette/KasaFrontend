@@ -1,3 +1,7 @@
+/**
+ * Page de la messagerie (`/messages`), réservée aux utilisateurs connectés.
+ * @module app/messages
+ */
 import type { Metadata } from "next";
 import ConversationList from "@/components/messages/ConversationList";
 import MessageComposer from "@/components/messages/MessageComposer";
@@ -5,12 +9,18 @@ import MessageThread from "@/components/messages/MessageThread";
 import BackLink from "@/components/ui/BackLink";
 import { CONVERSATIONS, MESSAGES_AFTER, MESSAGES_BEFORE } from "@/lib/messages-preview";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   title: "Messagerie",
   description: "Échangez avec les hôtes et les voyageurs Kasa.",
   robots: { index: false },
 };
 
+/**
+ * Squelette de la messagerie avec des données de démonstration.
+ *
+ * En desktop, la liste des conversations et le fil sont côte à côte. En mobile, seule la liste est affichée.
+ */
 export default function MessagesPage() {
   const active = CONVERSATIONS[0];
 

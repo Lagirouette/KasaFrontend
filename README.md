@@ -27,6 +27,16 @@ Refonte du site Kasa en Next.js (App Router, TypeScript, Tailwind CSS 4), branch
 npm test
 ```
 
+## Documentation
+
+Le code est documenté en JSDoc. La documentation HTML est générée avec TypeDoc dans le dossier `docs/` :
+
+```bash
+npm run docs
+```
+
+Ouvrir ensuite `docs/index.html` dans un navigateur.
+
 ## Build de production
 
 Les pages sont pré-rendues au build à partir des données de l'API, puis rafraîchies toutes les minutes : **le backend doit être démarré pendant `npm run build`**.

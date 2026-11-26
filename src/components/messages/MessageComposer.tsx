@@ -1,3 +1,8 @@
+/**
+ * Zone de rédaction d'un message.
+ * @module components/messages/MessageComposer
+ */
+/** Zone de saisie et bouton d'envoi, désactivés tant que l'envoi de messages n'est pas disponible. */
 export default function MessageComposer() {
   return (
     <form className="border-line bg-surface border-t p-4 md:p-5" aria-describedby="composer-note">

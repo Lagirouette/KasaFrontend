@@ -1,5 +1,10 @@
+/**
+ * Pied de page du site.
+ * @module components/layout/Footer
+ */
 import { LogoMark } from "@/components/Logo";
 
+/** Pied de page avec le logo et les mentions de copyright. */
 export default function Footer() {
   return (
     <footer className="bg-surface mt-auto">

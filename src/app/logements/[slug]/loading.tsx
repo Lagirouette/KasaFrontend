@@ -1,3 +1,8 @@
+/**
+ * Chargement de la page d'un logement.
+ * @module app/logements/[slug]/loading
+ */
+/** Squelette affiché pendant le chargement d'un logement. */
 export default function PropertyLoading() {
   return (
     <div

@@ -1,3 +1,7 @@
+/**
+ * Action serveur de création d'un logement.
+ * @module app/actions/properties
+ */
 "use server";
 
 import { updateTag } from "next/cache";
@@ -7,11 +11,23 @@ import { readPropertyForm, validateProperty, type PropertyFormErrors } from "@/l
 import { deleteSession, getToken } from "@/lib/session";
 import type { PropertyDetails } from "@/types/api";
 
+/** État du formulaire d'ajout renvoyé par {@link createProperty}. */
 export type PropertyFormState = {
+  /** Message d'erreur général. */
   error?: string;
+  /** Erreurs par champ. */
   fieldErrors?: PropertyFormErrors;
 };
 
+/**
+ * Valide le formulaire puis crée le logement auprès de l'API.
+ *
+ * En cas de succès, invalide le cache des logements et redirige vers la page du nouveau logement. Si la session a expiré, redirige vers la connexion.
+ *
+ * @param _prev État précédent du formulaire, non utilisé.
+ * @param formData Données du formulaire d'ajout.
+ * @returns L'état du formulaire en cas d'erreur.
+ */
 export async function createProperty(_prev: PropertyFormState, formData: FormData): Promise<PropertyFormState> {
   const input = readPropertyForm(formData);
   const fieldErrors = validateProperty(input);

@@ -1,8 +1,14 @@
+/**
+ * Page 404.
+ * @module app/not-found
+ */
 import type { Metadata } from "next";
 import ErrorState from "@/components/ui/ErrorState";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = { title: "Page introuvable" };
 
+/** Affiche la page « Page introuvable » avec un lien vers l'accueil. */
 export default function NotFound() {
   return (
     <ErrorState

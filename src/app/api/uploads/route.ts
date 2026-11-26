@@ -1,10 +1,21 @@
+/**
+ * Route d'envoi d'images (`POST /api/uploads`).
+ * @module app/api/uploads
+ */
 import { NextResponse, type NextRequest } from "next/server";
 import { API_URL } from "@/lib/api";
 import { SESSION_COOKIE } from "@/lib/constants";
 import { validateImageFile } from "@/lib/property-form";
 
+/** Usages d'image acceptés par l'API. */
 const PURPOSES = ["property-cover", "property-picture", "user-picture"];
 
+/**
+ * Vérifie l'image reçue puis la transmet à l'API avec le jeton de la session.
+ *
+ * @param request Requête multipart avec les champs `file` et `purpose`.
+ * @returns `{ url }` avec l'URL absolue de l'image, ou `{ error }` avec un statut d'erreur.
+ */
 export async function POST(request: NextRequest) {
   const token = request.cookies.get(SESSION_COOKIE)?.value;
   if (!token) {

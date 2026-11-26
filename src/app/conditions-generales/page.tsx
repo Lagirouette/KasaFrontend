@@ -1,17 +1,25 @@
+/**
+ * Page des conditions générales et des données personnelles (`/conditions-generales`).
+ * @module app/conditions-generales
+ */
 import type { Metadata } from "next";
 import Card from "@/components/ui/Card";
 import PageHeading from "@/components/ui/PageHeading";
 import { CONTACT_EMAIL } from "@/lib/constants";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   title: "Conditions générales et données personnelles",
   description: "Conditions générales d'utilisation de Kasa et informations sur le traitement de vos données personnelles.",
   alternates: { canonical: "/conditions-generales" },
 };
 
+/** Classes d'une section. */
 const SECTION = "flex flex-col gap-3 text-sm leading-relaxed";
+/** Classes d'un titre de section. */
 const TITLE = "text-primary text-lg font-semibold";
 
+/** Affiche les conditions générales d'utilisation et la politique de données personnelles (RGPD). */
 export default function TermsPage() {
   return (
     <div className="mx-auto w-full max-w-[800px] px-4 pt-8 pb-16 md:pt-16">

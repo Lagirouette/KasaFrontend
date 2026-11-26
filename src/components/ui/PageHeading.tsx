@@ -1,3 +1,14 @@
+/**
+ * En-tête de page.
+ * @module components/ui/PageHeading
+ */
+/**
+ * Titre principal centré d'une page, suivi d'une introduction.
+ *
+ * @param props Propriétés du composant.
+ * @param props.title Titre, rendu dans le `h1`.
+ * @param props.children Texte d'introduction.
+ */
 export default function PageHeading({ title, children }: { title: React.ReactNode; children?: React.ReactNode }) {
   return (
     <div className="text-center">

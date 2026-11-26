@@ -1,3 +1,7 @@
+/**
+ * Carrousel d'images d'un logement.
+ * @module components/properties/Carousel
+ */
 "use client";
 
 import Image from "next/image";
@@ -5,11 +9,19 @@ import { useState, type KeyboardEvent } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
 import { getThumbnailIndexes, wrapIndex } from "@/lib/carousel";
 
+/** Propriétés de {@link Carousel}. */
 type Props = {
+  /** URL des images du logement. */
   pictures: string[];
+  /** Titre du logement, utilisé dans les textes alternatifs. */
   title: string;
 };
 
+/**
+ * Carrousel à hauteur fixe avec image principale, miniatures et navigation au clavier.
+ *
+ * Les flèches et le compteur sont masqués quand le logement n'a qu'une seule image. La navigation boucle après la dernière image.
+ */
 export default function Carousel({ pictures, title }: Props) {
   const [current, setCurrent] = useState(0);
   const count = pictures.length;

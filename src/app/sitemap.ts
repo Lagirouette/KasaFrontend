@@ -1,8 +1,19 @@
+/**
+ * Fichier `sitemap.xml`.
+ * @module app/sitemap
+ */
 import type { MetadataRoute } from "next";
 import { getProperties } from "@/lib/properties";
 import { absoluteUrl } from "@/lib/site";
 import type { Property } from "@/types/api";
 
+/**
+ * Liste les pages publiques et tous les logements.
+ *
+ * Si l'API est injoignable, seules les pages fixes sont listées.
+ *
+ * @returns Les entrées du sitemap.
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let properties: Property[] = [];
   try {

@@ -1,7 +1,12 @@
+/**
+ * Limite d'erreur globale, utilisée si le layout lui-même échoue.
+ * @module app/global-error
+ */
 "use client";
 
 import "./globals.css";
 
+/** Affiche une page d'erreur complète, avec ses propres balises `html` et `body`. */
 export default function GlobalError({ error, retry }: { error: unknown; retry: () => void }) {
   console.error(error);
   return (

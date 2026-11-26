@@ -1,3 +1,7 @@
+/**
+ * Page des favoris (`/favoris`).
+ * @module app/favoris
+ */
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import FavoritesList from "@/components/favorites/FavoritesList";
@@ -5,12 +9,14 @@ import { PropertyGridSkeleton } from "@/components/properties/PropertyGrid";
 import PageHeading from "@/components/ui/PageHeading";
 import { getProperties } from "@/lib/properties";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   title: "Vos favoris",
   description: "Retrouvez tous les logements Kasa que vous avez aimés et réservez votre prochain séjour.",
   alternates: { canonical: "/favoris" },
 };
 
+/** Affiche les logements enregistrés en favoris. */
 export default function FavoritesPage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[760px] md:pt-16">
@@ -33,6 +39,7 @@ export default function FavoritesPage() {
   );
 }
 
+/** Charge tous les logements et les transmet à la liste des favoris. */
 async function Favorites() {
   const properties = await getProperties();
   return <FavoritesList properties={properties} />;

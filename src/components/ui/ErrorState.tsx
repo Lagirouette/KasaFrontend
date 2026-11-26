@@ -1,13 +1,24 @@
+/**
+ * Affichage d'une page d'erreur.
+ * @module components/ui/ErrorState
+ */
 import { ButtonLink } from "./Button";
 
+/** Propriétés de {@link ErrorState}. */
 type Props = {
+  /** Code ou mot affiché en grand, par exemple `404`. */
   code: string;
+  /** Titre de l'erreur. */
   title: string;
+  /** Explication pour l'utilisateur. */
   message: string;
+  /** Bouton ou lien proposé à l'utilisateur. */
   action?: React.ReactNode;
+  /** Information technique, par exemple la référence de l'erreur. */
   details?: string;
 };
 
+/** Affiche une erreur avec un titre, une explication et une action. */
 export default function ErrorState({ code, title, message, action, details }: Props) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">

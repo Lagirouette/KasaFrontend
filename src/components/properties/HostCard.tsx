@@ -1,14 +1,22 @@
+/**
+ * Carte de l'hôte sur la page d'un logement.
+ * @module components/properties/HostCard
+ */
 import Image from "next/image";
 import { StarIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import type { Host } from "@/types/api";
 
+/** Propriétés de {@link HostCard}. */
 type Props = {
+  /** Hôte du logement. */
   host?: Host;
+  /** Note moyenne du logement, masquée si elle est nulle. */
   rating: number | null;
 };
 
+/** Affiche l'hôte, la note du logement et les liens vers la messagerie. */
 export default function HostCard({ host, rating }: Props) {
   const hostName = host?.name ?? "Hôte Kasa";
   const messagesHref = host ? `/messages?hote=${host.id}` : "/messages";

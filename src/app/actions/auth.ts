@@ -1,3 +1,7 @@
+/**
+ * Actions serveur d'authentification : connexion, inscription et déconnexion.
+ * @module app/actions/auth
+ */
 "use server";
 
 import { redirect } from "next/navigation";
@@ -9,14 +13,26 @@ import { safeRedirect } from "@/lib/redirect";
 import { createSession, deleteSession } from "@/lib/session";
 import type { AuthPayload } from "@/types/api";
 
+/** État du formulaire de connexion renvoyé par {@link login}. */
 export type LoginFormState = {
+  /** Message d'erreur général. */
   error?: string;
+  /** Erreurs par champ. */
   fieldErrors?: Partial<Record<"email" | "password", string>>;
+  /** Email saisi, pour le réafficher après une erreur. */
   email?: string;
 };
 
+/** Format minimal d'une adresse email. */
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * Connecte l'utilisateur auprès de l'API puis enregistre le jeton dans le cookie de session.
+ *
+ * @param _prev État précédent du formulaire, non utilisé.
+ * @param formData Email, mot de passe et page de redirection.
+ * @returns L'état du formulaire en cas d'erreur. En cas de succès, redirige vers la page demandée.
+ */
 export async function login(_prev: LoginFormState, formData: FormData): Promise<LoginFormState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
@@ -44,12 +60,23 @@ export async function login(_prev: LoginFormState, formData: FormData): Promise<
   redirect(safeRedirect(formData.get("redirect")));
 }
 
+/** État du formulaire d'inscription renvoyé par {@link register}. */
 export type RegisterFormState = {
   error?: string;
   fieldErrors?: RegistrationErrors;
+  /** Valeurs saisies, pour les réafficher après une erreur. */
   values?: { lastName: string; firstName: string; email: string };
 };
 
+/**
+ * Crée un compte propriétaire, ouvre la session et envoie l'email de confirmation.
+ *
+ * Redirige ensuite vers `/inscription/bienvenue` avec l'état de l'envoi de l'email : `envoye`, `apercu` ou `echec`.
+ *
+ * @param _prev État précédent du formulaire, non utilisé.
+ * @param formData Nom, prénom, email, mot de passe, acceptation des conditions et page de redirection.
+ * @returns L'état du formulaire en cas d'erreur, par exemple si l'email est déjà utilisé.
+ */
 export async function register(_prev: RegisterFormState, formData: FormData): Promise<RegisterFormState> {
   const input = {
     lastName: String(formData.get("lastName") ?? "").trim(),
@@ -89,6 +116,7 @@ export async function register(_prev: RegisterFormState, formData: FormData): Pr
   redirect(`/inscription/bienvenue?${params.toString()}`);
 }
 
+/** Supprime la session et redirige vers la page de connexion. */
 export async function logout() {
   await deleteSession();
   redirect("/connexion");

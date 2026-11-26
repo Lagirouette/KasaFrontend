@@ -1,7 +1,20 @@
+/**
+ * Icônes SVG décoratives, masquées pour les lecteurs d'écran.
+ * @module components/icons
+ */
+/** Propriétés communes des icônes. */
 type IconProps = { className?: string };
 
+/** Classes appliquées à toutes les icônes. */
 const base = "inline-block shrink-0";
 
+/**
+ * Cœur des favoris.
+ *
+ * @param props Propriétés de l'icône.
+ * @param props.className Classes CSS de taille et de couleur.
+ * @param props.outline `true` pour un cœur vide, `false` pour un cœur plein.
+ */
 export function HeartIcon({ className = "size-4", outline = false }: IconProps & { outline?: boolean }) {
   return (
     <svg
@@ -17,6 +30,7 @@ export function HeartIcon({ className = "size-4", outline = false }: IconProps &
   );
 }
 
+/** Bulle de la messagerie. */
 export function MessageIcon({ className = "size-4" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -25,6 +39,7 @@ export function MessageIcon({ className = "size-4" }: IconProps) {
   );
 }
 
+/** Bouton d'ouverture du menu mobile. */
 export function MenuIcon({ className = "size-6" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className={`${base} ${className}`}>
@@ -33,6 +48,7 @@ export function MenuIcon({ className = "size-6" }: IconProps) {
   );
 }
 
+/** Croix de fermeture. */
 export function CloseIcon({ className = "size-6" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -41,6 +57,7 @@ export function CloseIcon({ className = "size-6" }: IconProps) {
   );
 }
 
+/** Flèche vers la gauche. */
 export function ChevronLeftIcon({ className = "size-4" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -49,6 +66,7 @@ export function ChevronLeftIcon({ className = "size-4" }: IconProps) {
   );
 }
 
+/** Flèche vers la droite. */
 export function ChevronRightIcon({ className = "size-4" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -57,6 +75,7 @@ export function ChevronRightIcon({ className = "size-4" }: IconProps) {
   );
 }
 
+/** Flèche vers le bas, utilisée par les sections repliables. */
 export function ChevronDownIcon({ className = "size-4" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -65,6 +84,7 @@ export function ChevronDownIcon({ className = "size-4" }: IconProps) {
   );
 }
 
+/** Repère de localisation. */
 export function LocationIcon({ className = "size-3.5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
@@ -74,6 +94,7 @@ export function LocationIcon({ className = "size-3.5" }: IconProps) {
   );
 }
 
+/** Étoile de notation. */
 export function StarIcon({ className = "size-3.5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={`${base} ${className}`}>

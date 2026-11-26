@@ -1,3 +1,7 @@
+/**
+ * Page d'un logement (`/logements/[slug]`).
+ * @module app/logements/[slug]
+ */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Carousel from "@/components/properties/Carousel";
@@ -8,12 +12,18 @@ import BackLink from "@/components/ui/BackLink";
 import { getProperties, getPropertyBySlug } from "@/lib/properties";
 import { breadcrumbSchema, propertySchema } from "@/lib/structured-data";
 
+/**
+ * Liste les slugs des logements à pré-rendre au build.
+ *
+ * @returns Les paramètres de chaque logement, ou un slug factice si l'API n'en renvoie aucun.
+ */
 export async function generateStaticParams() {
   const properties = await getProperties();
   if (properties.length === 0) return [{ slug: "__aucun-logement__" }];
   return properties.map((property) => ({ slug: property.slug }));
 }
 
+/** Génère le titre, la description, l'URL canonique et l'image de partage du logement. */
 export async function generateMetadata({ params }: PageProps<"/logements/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const property = await getPropertyBySlug(slug);
@@ -37,6 +47,11 @@ export async function generateMetadata({ params }: PageProps<"/logements/[slug]"
   };
 }
 
+/**
+ * Affiche le carrousel, les informations et l'hôte du logement, avec ses données structurées.
+ *
+ * Renvoie une page 404 si le logement n'existe pas.
+ */
 export default async function PropertyPage({ params }: PageProps<"/logements/[slug]">) {
   const { slug } = await params;
   const property = await getPropertyBySlug(slug);

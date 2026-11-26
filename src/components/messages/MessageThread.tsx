@@ -1,11 +1,25 @@
+/**
+ * Fil de discussion de la messagerie.
+ * @module components/messages/MessageThread
+ */
 import type { MessagePreview } from "@/lib/messages-preview";
 
+/** Propriétés de {@link MessageThread}. */
 type Props = {
+  /** Messages affichés avant le séparateur de date. */
   before: MessagePreview[];
+  /** Texte du séparateur de date. */
   dateLabel: string;
+  /** Messages affichés après le séparateur de date. */
   after: MessagePreview[];
 };
 
+/**
+ * Bulle d'un message, alignée à droite pour les messages envoyés par l'utilisateur.
+ *
+ * @param props Propriétés du composant.
+ * @param props.message Message à afficher.
+ */
 function Message({ message }: { message: MessagePreview }) {
   return (
     <li className={`flex items-start gap-2 ${message.fromMe ? "flex-row-reverse" : ""}`}>
@@ -26,6 +40,7 @@ function Message({ message }: { message: MessagePreview }) {
   );
 }
 
+/** Affiche les messages d'une conversation, séparés par une date. */
 export default function MessageThread({ before, dateLabel, after }: Props) {
   return (
     <ol aria-label="Messages de la conversation" className="flex flex-col gap-5 px-4 py-6 md:px-6">

@@ -1,3 +1,7 @@
+/**
+ * Formulaire de connexion.
+ * @module components/auth/LoginForm
+ */
 "use client";
 
 import Link from "next/link";
@@ -7,6 +11,14 @@ import { Button } from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 import PasswordField from "./PasswordField";
 
+/**
+ * Formulaire de connexion par email et mot de passe, envoyé à l'action serveur `login`.
+ *
+ * Affiche un message d'erreur en cas d'identifiants incorrects.
+ *
+ * @param props Propriétés du composant.
+ * @param props.redirectTo Page ouverte après la connexion, `/` par défaut.
+ */
 export default function LoginForm({ redirectTo = "/" }: { redirectTo?: string }) {
   const [state, formAction, pending] = useActionState<LoginFormState, FormData>(login, {});
 

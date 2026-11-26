@@ -1,8 +1,19 @@
+/**
+ * Grille de logements et son squelette de chargement.
+ * @module components/properties/PropertyGrid
+ */
 import type { Property } from "@/types/api";
 import PropertyCard from "./PropertyCard";
 
+/** Classes de la grille, partagées avec le squelette. */
 const GRID = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3";
 
+/**
+ * Affiche les logements dans une grille responsive.
+ *
+ * @param props Propriétés du composant.
+ * @param props.properties Logements à afficher.
+ */
 export default function PropertyGrid({ properties }: { properties: Property[] }) {
   return (
     <ul className={GRID}>
@@ -15,6 +26,12 @@ export default function PropertyGrid({ properties }: { properties: Property[] })
   );
 }
 
+/**
+ * Squelette affiché pendant le chargement des logements.
+ *
+ * @param props Propriétés du composant.
+ * @param props.count Nombre de cartes à afficher, 6 par défaut.
+ */
 export function PropertyGridSkeleton({ count = 6 }: { count?: number }) {
   return (
     <div className={GRID} role="status" aria-label="Chargement des logements">

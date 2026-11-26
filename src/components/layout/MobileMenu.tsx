@@ -1,3 +1,7 @@
+/**
+ * Menu de navigation mobile.
+ * @module components/layout/MobileMenu
+ */
 "use client";
 
 import Link from "next/link";
@@ -5,8 +9,14 @@ import { useEffect, useState } from "react";
 import { CloseIcon, MenuIcon } from "@/components/icons";
 import { ADD_PROPERTY_LINK, ICON_LINKS, MAIN_LINKS } from "./nav";
 
+/** Liens du menu mobile, qui regroupe tous les liens de l'en-tête. */
 const LINKS = [...MAIN_LINKS, ADD_PROPERTY_LINK, ...ICON_LINKS];
 
+/**
+ * Bouton qui ouvre et ferme le menu de navigation en mobile.
+ *
+ * Le menu se ferme avec la touche Échap.
+ */
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
 

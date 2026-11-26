@@ -1,3 +1,7 @@
+/**
+ * Formulaire d'ajout d'une propriété.
+ * @module components/properties/form/PropertyForm
+ */
 "use client";
 
 import { startTransition, useActionState, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
@@ -18,6 +22,7 @@ import {
 } from "@/lib/property-form";
 import ImageUploadField from "./ImageUploadField";
 
+/** Libellé de chaque champ dans le récapitulatif des erreurs. */
 const FIELD_LABELS: Record<keyof PropertyFormInput, string> = {
   title: "Titre de la propriété",
   description: "Description",
@@ -32,6 +37,7 @@ const FIELD_LABELS: Record<keyof PropertyFormInput, string> = {
   tags: "Catégories",
 };
 
+/** Identifiant de l'élément à cibler pour chaque champ en erreur. */
 const FIELD_TARGETS: Record<keyof PropertyFormInput, string> = {
   title: "title",
   description: "description",
@@ -46,8 +52,17 @@ const FIELD_TARGETS: Record<keyof PropertyFormInput, string> = {
   tags: "custom-tag",
 };
 
+/** Image du logement, avec une clé stable pour React. */
 type Picture = { key: number; url: string };
 
+/**
+ * Formulaire d'ajout d'une propriété : informations, images, hôte, équipements et catégories.
+ *
+ * Le formulaire est validé dans le navigateur avant l'envoi. En cas d'erreur, un récapitulatif reçoit le focus et renvoie vers chaque champ. Il est ensuite envoyé à l'action serveur `createProperty`.
+ *
+ * @param props Propriétés du composant.
+ * @param props.defaultHostName Nom de l'hôte prérempli, celui de l'utilisateur connecté.
+ */
 export default function PropertyForm({ defaultHostName = "" }: { defaultHostName?: string }) {
   const [state, formAction, pending] = useActionState<PropertyFormState, FormData>(createProperty, {});
   const [clientErrors, setClientErrors] = useState<PropertyFormErrors | null>(null);
@@ -65,8 +80,14 @@ export default function PropertyForm({ defaultHostName = "" }: { defaultHostName
   const errorFields = FIELD_ORDER.filter((field) => errors[field]);
   const busy = pending || uploads > 0;
 
+  /** Compte les envois d'images en cours pour bloquer la soumission pendant un envoi. */
   const trackUpload = (uploading: boolean) => setUploads((count) => count + (uploading ? 1 : -1));
 
+  /**
+   * Valide le formulaire et l'envoie sans le réinitialiser, ou affiche les erreurs.
+   *
+   * @param event Événement de soumission.
+   */
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -82,6 +103,11 @@ export default function PropertyForm({ defaultHostName = "" }: { defaultHostName
     startTransition(() => formAction(formData));
   }
 
+  /**
+   * Efface les erreurs au fil de la saisie.
+   *
+   * @param event Événement de modification du formulaire.
+   */
   function onFormChange(event: FormEvent<HTMLFormElement>) {
     if (!clientErrors) return;
     const validation = validateProperty(readPropertyForm(new FormData(event.currentTarget)));
@@ -90,10 +116,16 @@ export default function PropertyForm({ defaultHostName = "" }: { defaultHostName
     );
   }
 
+  /**
+   * Sélectionne ou désélectionne une catégorie.
+   *
+   * @param tag Catégorie concernée.
+   */
   function toggleTag(tag: string) {
     setTags((current) => (current.includes(tag) ? current.filter((t) => t !== tag) : [...current, tag]));
   }
 
+  /** Ajoute la catégorie saisie à la liste, si elle n'existe pas déjà. */
   function addCustomTag() {
     const tag = customTag.trim().replace(/\s+/g, " ");
     if (!tag) return;
@@ -107,6 +139,11 @@ export default function PropertyForm({ defaultHostName = "" }: { defaultHostName
     setCustomTag("");
   }
 
+  /**
+   * Ajoute la catégorie saisie avec la touche Entrée, sans envoyer le formulaire.
+   *
+   * @param event Événement clavier.
+   */
   function onCustomTagKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
       event.preventDefault();

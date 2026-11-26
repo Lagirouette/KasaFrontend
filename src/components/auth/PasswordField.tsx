@@ -1,13 +1,22 @@
+/**
+ * Champ de mot de passe avec bouton Afficher / Masquer.
+ * @module components/auth/PasswordField
+ */
 "use client";
 
 import { useState, type ComponentProps } from "react";
 
+/** Propriétés de {@link PasswordField}, en plus de celles d'un `input`. */
 type Props = Omit<ComponentProps<"input">, "type"> & {
+  /** Identifiant du champ, relié au libellé et au message d'erreur. */
   id: string;
+  /** Libellé du champ. */
   label: string;
+  /** Message d'erreur affiché sous le champ. */
   error?: string;
 };
 
+/** Champ de mot de passe dont le contenu peut être affiché ou masqué. */
 export default function PasswordField({ id, label, error, ...props }: Props) {
   const [visible, setVisible] = useState(false);
 

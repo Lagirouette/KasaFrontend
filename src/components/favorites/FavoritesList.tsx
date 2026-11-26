@@ -1,3 +1,7 @@
+/**
+ * Liste des logements favoris.
+ * @module components/favorites/FavoritesList
+ */
 "use client";
 
 import PropertyGrid, { PropertyGridSkeleton } from "@/components/properties/PropertyGrid";
@@ -5,6 +9,12 @@ import { ButtonLink } from "@/components/ui/Button";
 import { useFavorites } from "@/hooks/useFavorites";
 import type { Property } from "@/types/api";
 
+/**
+ * Affiche les logements enregistrés en favoris, ou un message s'il n'y en a aucun.
+ *
+ * @param props Propriétés du composant.
+ * @param props.properties Tous les logements, filtrés ensuite selon les favoris.
+ */
 export default function FavoritesList({ properties }: { properties: Property[] }) {
   const { favorites, ready } = useFavorites();
 

@@ -1,3 +1,7 @@
+/**
+ * Page d'accueil (`/`).
+ * @module app/page
+ */
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -8,14 +12,17 @@ import JsonLd from "@/components/seo/JsonLd";
 import PageHeading from "@/components/ui/PageHeading";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
+/** Image de la bannière. */
 const HERO_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg";
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: { url: "/", images: [HERO_IMAGE] },
 };
 
+/** Affiche la bannière, la liste des logements et la section « Comment ça marche ? ». */
 export default function HomePage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">

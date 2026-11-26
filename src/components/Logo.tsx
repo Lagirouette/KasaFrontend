@@ -1,3 +1,14 @@
+/**
+ * Logo de Kasa, en version complète ou réduite à la maison.
+ * @module components/Logo
+ */
+/**
+ * Logo réduit à la maison, utilisé en mobile et dans le pied de page.
+ *
+ * @param props Propriétés du composant.
+ * @param props.className Classes CSS de taille et de couleur.
+ * @returns Le logo en SVG, décoratif.
+ */
 export function LogoMark({ className = "w-8 text-brand" }: { className?: string }) {
   return (
     <svg viewBox="0 0 30 30" role="img" aria-label="Kasa" className={`h-auto ${className}`}>
@@ -6,6 +17,13 @@ export function LogoMark({ className = "w-8 text-brand" }: { className?: string 
   );
 }
 
+/**
+ * Logo complet de Kasa, avec le texte.
+ *
+ * @param props Propriétés du composant.
+ * @param props.className Classes CSS de taille et de couleur.
+ * @returns Le logo en SVG, décoratif.
+ */
 export default function Logo({ className = "w-[100px] text-brand" }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 32" role="img" aria-label="Kasa" className={`h-auto ${className}`}>
@@ -22,6 +40,7 @@ export default function Logo({ className = "w-[100px] text-brand" }: { className
   );
 }
 
+/** Tracé de la maison, partagé par les deux versions du logo. */
 function HousePath() {
   return (
     <>

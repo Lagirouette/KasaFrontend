@@ -1,3 +1,7 @@
+/**
+ * Formulaire d'inscription.
+ * @module components/auth/RegisterForm
+ */
 "use client";
 
 import Link from "next/link";
@@ -8,6 +12,14 @@ import TextField from "@/components/ui/TextField";
 import { PASSWORD_RULES } from "@/lib/validation";
 import PasswordField from "./PasswordField";
 
+/**
+ * Formulaire d'inscription : nom, prénom, email, mot de passe et acceptation des conditions générales.
+ *
+ * Les règles du mot de passe sont vérifiées en direct. Le formulaire est envoyé à l'action serveur `register`.
+ *
+ * @param props Propriétés du composant.
+ * @param props.redirectTo Page ouverte après l'inscription, `/` par défaut.
+ */
 export default function RegisterForm({ redirectTo = "/" }: { redirectTo?: string }) {
   const [state, formAction, pending] = useActionState<RegisterFormState, FormData>(register, {});
   const [password, setPassword] = useState("");

@@ -1,3 +1,13 @@
+/**
+ * Gabarits des emails envoyés par Kasa.
+ * @module lib/emails
+ */
+/**
+ * Échappe les caractères spéciaux HTML d'une valeur insérée dans un email.
+ *
+ * @param value Texte à échapper.
+ * @returns Le texte sans risque d'injection HTML.
+ */
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -7,6 +17,14 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+/**
+ * Construit l'email de confirmation d'inscription, en version texte et HTML.
+ *
+ * @param params Paramètres de l'email.
+ * @param params.firstName Prénom de l'utilisateur.
+ * @param params.siteUrl URL publique du site, utilisée pour les liens.
+ * @returns L'objet, le texte brut et le HTML de l'email.
+ */
 export function registrationConfirmationEmail({ firstName, siteUrl }: { firstName: string; siteUrl: string }) {
   const name = escapeHtml(firstName);
   const url = escapeHtml(siteUrl);

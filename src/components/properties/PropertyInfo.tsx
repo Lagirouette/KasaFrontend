@@ -1,3 +1,7 @@
+/**
+ * Informations détaillées d'un logement.
+ * @module components/properties/PropertyInfo
+ */
 import { LocationIcon } from "@/components/icons";
 import Card from "@/components/ui/Card";
 import Collapse from "@/components/ui/Collapse";
@@ -5,6 +9,12 @@ import { TagList } from "@/components/ui/Tag";
 import { formatPrice } from "@/lib/format";
 import type { PropertyDetails } from "@/types/api";
 
+/**
+ * Affiche le titre, la localisation, le prix et les sections repliables Description, Équipements et Catégorie d'un logement.
+ *
+ * @param props Propriétés du composant.
+ * @param props.property Détail du logement.
+ */
 export default function PropertyInfo({ property }: { property: PropertyDetails }) {
   return (
     <Card>

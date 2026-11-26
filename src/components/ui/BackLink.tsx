@@ -1,5 +1,16 @@
+/**
+ * Lien de retour.
+ * @module components/ui/BackLink
+ */
 import Link from "next/link";
 
+/**
+ * Lien de retour précédé d'une flèche.
+ *
+ * @param props Propriétés du composant.
+ * @param props.href Destination du lien, `/` par défaut.
+ * @param props.children Texte du lien, « Retour » par défaut.
+ */
 export default function BackLink({ href = "/", children = "Retour" }: { href?: string; children?: React.ReactNode }) {
   return (
     <Link

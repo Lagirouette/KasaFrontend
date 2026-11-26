@@ -1,3 +1,8 @@
+/**
+ * Règles et validation du formulaire d'ajout de propriété, partagées par le client et le serveur.
+ * @module lib/property-form
+ */
+/** Équipements proposés sous forme de cases à cocher. */
 export const EQUIPMENTS = [
   "Micro-Ondes",
   "Douche italienne",
@@ -25,6 +30,7 @@ export const EQUIPMENTS = [
   "Vue Parc",
 ] as const;
 
+/** Catégories proposées par défaut. */
 export const CATEGORIES = [
   "Parc",
   "Night Life",
@@ -37,12 +43,18 @@ export const CATEGORIES = [
   "Forêt",
 ] as const;
 
+/** Taille maximale d'une image envoyée, en octets (5 Mo). */
 export const IMAGE_MAX_SIZE = 5 * 1024 * 1024;
+/** Types MIME d'image acceptés. */
 export const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
+/** Consigne affichée pour les formats et la taille des images. */
 export const IMAGE_RULES = "JPEG, PNG, WebP ou AVIF, 5 Mo maximum.";
+/** Nombre maximal d'images du logement, en plus de la couverture. */
 export const MAX_PICTURES = 10;
+/** Nombre maximal de catégories. */
 export const MAX_TAGS = 12;
 
+/** Valeurs du formulaire, nettoyées par {@link readPropertyForm}. */
 export type PropertyFormInput = {
   title: string;
   description: string;
@@ -57,8 +69,10 @@ export type PropertyFormInput = {
   tags: string[];
 };
 
+/** Message d'erreur de chaque champ invalide. */
 export type PropertyFormErrors = Partial<Record<keyof PropertyFormInput, string>>;
 
+/** Ordre des champs dans la page, utilisé pour le récapitulatif des erreurs. */
 export const FIELD_ORDER: (keyof PropertyFormInput)[] = [
   "title",
   "description",
@@ -73,6 +87,12 @@ export const FIELD_ORDER: (keyof PropertyFormInput)[] = [
   "tags",
 ];
 
+/**
+ * Vérifie qu'une valeur est une URL http ou https.
+ *
+ * @param value Valeur à tester.
+ * @returns `true` si l'URL est valide.
+ */
 function isImageUrl(value: string) {
   try {
     const url = new URL(value);
@@ -82,12 +102,24 @@ function isImageUrl(value: string) {
   }
 }
 
+/**
+ * Vérifie le format et la taille d'un fichier image avant son envoi.
+ *
+ * @param file Fichier, ou objet avec son type MIME et sa taille.
+ * @returns Le message d'erreur, ou `undefined` si le fichier est accepté.
+ */
 export function validateImageFile(file: { type: string; size: number }) {
   if (!IMAGE_TYPES.includes(file.type)) return "Format non accepté : choisissez une image JPEG, PNG, WebP ou AVIF.";
   if (file.size > IMAGE_MAX_SIZE) return "Image trop lourde : 5 Mo maximum.";
   return undefined;
 }
 
+/**
+ * Valide toutes les valeurs du formulaire d'ajout de propriété.
+ *
+ * @param input Valeurs du formulaire.
+ * @returns Les erreurs par champ. L'objet est vide si tout est valide.
+ */
 export function validateProperty(input: PropertyFormInput): PropertyFormErrors {
   const errors: PropertyFormErrors = {};
   const price = Number(input.price);
@@ -131,6 +163,12 @@ export function validateProperty(input: PropertyFormInput): PropertyFormErrors {
   return errors;
 }
 
+/**
+ * Extrait les valeurs du formulaire, sans espaces superflus ni doublons dans les listes.
+ *
+ * @param formData Données envoyées par le formulaire.
+ * @returns Les valeurs prêtes à être validées.
+ */
 export function readPropertyForm(formData: FormData): PropertyFormInput {
   const text = (name: string) => String(formData.get(name) ?? "").trim();
   const list = (name: string) =>

@@ -1,5 +1,10 @@
+/**
+ * Section « Comment ça marche ? » de la page d'accueil.
+ * @module components/home/HowItWorks
+ */
 import Card from "@/components/ui/Card";
 
+/** Étapes affichées dans la section. */
 const STEPS = [
   {
     title: "Recherchez",
@@ -15,6 +20,7 @@ const STEPS = [
   },
 ];
 
+/** Présente les étapes pour réserver un logement sur Kasa. */
 export default function HowItWorks() {
   return (
     <Card as="section" aria-labelledby="how-it-works" className="py-10 text-center sm:px-14">

@@ -1,14 +1,22 @@
+/**
+ * Carte d'un logement dans une grille.
+ * @module components/properties/PropertyCard
+ */
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 import { formatPrice } from "@/lib/format";
 import type { Property } from "@/types/api";
 
+/** Propriétés de {@link PropertyCard}. */
 type Props = {
+  /** Logement à afficher. */
   property: Property;
+  /** `true` pour charger l'image immédiatement, pour les cartes visibles au chargement de la page. */
   eager?: boolean;
 };
 
+/** Carte cliquable avec la photo, le titre, la localisation, le prix et le bouton favori d'un logement. */
 export default function PropertyCard({ property, eager = false }: Props) {
   return (
     <article className="bg-surface relative flex w-full flex-col overflow-hidden rounded-[10px]">

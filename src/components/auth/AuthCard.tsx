@@ -1,11 +1,20 @@
+/**
+ * Carte qui encadre les formulaires de connexion et d'inscription.
+ * @module components/auth/AuthCard
+ */
 import Card from "@/components/ui/Card";
 
+/** Propriétés de {@link AuthCard}. */
 type Props = {
+  /** Titre principal de la page. */
   title: React.ReactNode;
+  /** Texte d'introduction sous le titre. */
   intro: React.ReactNode;
+  /** Formulaire affiché dans la carte. */
   children: React.ReactNode;
 };
 
+/** Affiche le titre, l'introduction et le formulaire d'une page d'authentification. */
 export default function AuthCard({ title, intro, children }: Props) {
   return (
     <div className="mx-auto w-full max-w-[640px] px-4 pt-10 pb-16 md:pt-[72px]">

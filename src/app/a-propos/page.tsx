@@ -1,20 +1,28 @@
+/**
+ * Page « À propos » (`/a-propos`).
+ * @module app/a-propos
+ */
 import type { Metadata } from "next";
 import Image from "next/image";
 import JsonLd from "@/components/seo/JsonLd";
 import PageHeading from "@/components/ui/PageHeading";
 import { breadcrumbSchema } from "@/lib/structured-data";
 
+/** Image principale de la page. */
 const HERO_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-15-1.jpg";
+/** Image de la section « Notre mission ». */
 const MISSION_IMAGE =
   "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-3-1.jpg";
 
+/** Engagements listés dans la section « Notre mission ». */
 const MISSION = [
   "Offrir une plateforme fiable et simple d'utilisation",
   "Proposer des hébergements variés et de qualité",
   "Favoriser des échanges humains et chaleureux entre hôtes et voyageurs",
 ];
 
+/** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
   title: "À propos",
   description:
@@ -23,6 +31,7 @@ export const metadata: Metadata = {
   openGraph: { url: "/a-propos", images: [HERO_IMAGE] },
 };
 
+/** Présente Kasa, sa mission et ses engagements. */
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">

@@ -1,10 +1,18 @@
+/**
+ * Liste des conversations de la messagerie.
+ * @module components/messages/ConversationList
+ */
 import type { ConversationPreview } from "@/lib/messages-preview";
 
+/** Propriétés de {@link ConversationList}. */
 type Props = {
+  /** Conversations à afficher. */
   conversations: ConversationPreview[];
+  /** Identifiant de la conversation ouverte, mise en évidence. */
   activeId?: string;
 };
 
+/** Affiche la liste des conversations avec le dernier message et un point pour les messages non lus. */
 export default function ConversationList({ conversations, activeId }: Props) {
   return (
     <ul aria-label="Conversations" className="flex flex-col">
