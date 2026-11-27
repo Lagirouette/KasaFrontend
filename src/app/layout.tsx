@@ -11,7 +11,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 /** Police Inter, chargée par Next.js. */
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap", preload: false });
 
 /** Métadonnées par défaut de toutes les pages. */
 export const metadata: Metadata = {

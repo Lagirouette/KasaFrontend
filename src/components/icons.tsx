@@ -39,6 +39,15 @@ export function MessageIcon({ className = "size-4" }: IconProps) {
   );
 }
 
+/** Porte avec une flèche sortante, pour la déconnexion. */
+export function LogoutIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden className={`${base} ${className}`}>
+      <path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3M16 16l4-4-4-4M20 12H9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /** Bouton d'ouverture du menu mobile. */
 export function MenuIcon({ className = "size-6" }: IconProps) {
   return (

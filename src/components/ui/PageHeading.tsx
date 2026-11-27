@@ -13,7 +13,7 @@ export default function PageHeading({ title, children }: { title: React.ReactNod
   return (
     <div className="text-center">
       <h1 className="text-primary text-2xl font-bold md:text-3xl">{title}</h1>
-      {children && <div className="mx-auto mt-3 max-w-[560px] space-y-3 text-sm">{children}</div>}
+      {children && <div className="mx-auto mt-3 max-w-[760px] space-y-3 text-sm">{children}</div>}
     </div>
   );
 }

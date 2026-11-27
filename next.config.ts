@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   serverExternalPackages: ["nodemailer"],
   images: {
+    deviceSizes: [640, 750, 1080, 1200, 1920, 2240],
+    imageSizes: [64, 128, 256, 384],
     dangerouslyAllowLocalIP: apiIsLocal,
     remotePatterns: [
       {

@@ -16,8 +16,11 @@ const LINKS = [...MAIN_LINKS, ADD_PROPERTY_LINK, ...ICON_LINKS];
  * Bouton qui ouvre et ferme le menu de navigation en mobile.
  *
  * Le menu se ferme avec la touche Échap.
+ *
+ * @param props Propriétés du composant.
+ * @param props.footer Contenu affiché sous les liens, par exemple le bouton de déconnexion.
  */
-export default function MobileMenu() {
+export default function MobileMenu({ footer }: { footer?: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function MobileMenu() {
         <nav
           id="mobile-menu"
           aria-label="Navigation principale"
+          onSubmit={() => setOpen(false)}
           className="bg-surface border-line absolute inset-x-0 top-14 z-20 border-t shadow-md"
         >
           <ul className="flex flex-col py-2">
@@ -61,6 +65,7 @@ export default function MobileMenu() {
               </li>
             ))}
           </ul>
+          {footer}
         </nav>
       )}
     </>

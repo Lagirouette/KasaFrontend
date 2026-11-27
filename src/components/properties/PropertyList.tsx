@@ -18,7 +18,7 @@ export default async function PropertyList() {
   return (
     <>
       <JsonLd data={propertyListSchema(properties)} />
-      <PropertyGrid properties={properties} />
+      <PropertyGrid properties={properties} eagerCount={0} />
     </>
   );
 }

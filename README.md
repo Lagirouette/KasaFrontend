@@ -1,6 +1,8 @@
 # Kasa — Front-end (Next.js)
 
-Refonte du site Kasa en Next.js (App Router, TypeScript, Tailwind CSS 4), branchée sur l'API Express du dossier `../KasaBackend`.
+Kasa est une plateforme de location de logements entre particuliers. Les voyageurs parcourent les annonces, consultent le détail de chaque logement (photos, équipements, prix par nuit, hôte) et enregistrent leurs coups de cœur en favoris. Les propriétaires créent un compte pour publier leurs propres logements, avec photos, équipements et catégories. Une messagerie entre hôtes et voyageurs est en préparation.
+
+L'application est développée avec Next.js (App Router), TypeScript et Tailwind CSS 4. Elle s'appuie sur l'API Express du dossier `../KasaBackend` et met l'accent sur le référencement (rendu serveur, sitemap, données structurées), l'accessibilité et les performances.
 
 ## Démarrage
 

@@ -3,16 +3,18 @@
  * @module components/layout/Header
  */
 import Link from "next/link";
+import { Suspense } from "react";
+import LogoutButton from "@/components/auth/LogoutButton";
 import Logo, { LogoMark } from "@/components/Logo";
 import { HeartIcon, MessageIcon } from "@/components/icons";
 import MobileMenu from "./MobileMenu";
 import { ADD_PROPERTY_LINK, ICON_LINKS, MAIN_LINKS } from "./nav";
 
-/** En-tête avec la navigation principale en desktop et le menu repliable en mobile. */
+/** En-tête avec la navigation principale en desktop et le menu repliable en mobile, et le bouton de déconnexion quand l'utilisateur est connecté. */
 export default function Header() {
   return (
     <header className="relative md:px-4 md:pt-6">
-      <div className="bg-surface mx-auto hidden h-14 max-w-[680px] grid-cols-[1fr_auto_1fr] items-center gap-6 rounded-[10px] px-8 md:grid">
+      <div className="bg-surface mx-auto hidden h-14 max-w-[780px] grid-cols-[1fr_auto_1fr] items-center gap-6 rounded-[10px] px-8 md:grid">
         <nav aria-label="Navigation principale" className="flex gap-6 text-sm">
           {MAIN_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="hover:text-primary">
@@ -23,7 +25,7 @@ export default function Header() {
 
         <Link href="/">
           <span aria-hidden>
-            <Logo className="text-brand w-[96px]" />
+            <Logo className="w-[114px]" />
           </span>
           <span className="sr-only">Kasa, accueil</span>
         </Link>
@@ -41,15 +43,24 @@ export default function Header() {
                 </Link>
               </span>
             ))}
+            <Suspense fallback={null}>
+              <LogoutButton />
+            </Suspense>
           </div>
         </div>
       </div>
 
       <div className="bg-surface flex h-14 items-center justify-between px-4 md:hidden">
         <Link href="/" aria-label="Kasa, accueil">
-          <LogoMark className="text-brand w-7" />
+          <LogoMark className="w-7" eager />
         </Link>
-        <MobileMenu />
+        <MobileMenu
+          footer={
+            <Suspense fallback={null}>
+              <LogoutButton variant="menu" />
+            </Suspense>
+          }
+        />
       </div>
     </header>
   );

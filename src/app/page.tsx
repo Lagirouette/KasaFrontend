@@ -13,8 +13,7 @@ import PageHeading from "@/components/ui/PageHeading";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 /** Image de la bannière. */
-const HERO_IMAGE =
-  "https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/front-end-kasa-project/accommodation-19-1.jpg";
+const HERO_IMAGE = "/images/accueil-maison-dunes.webp";
 
 /** Métadonnées SEO de la page. */
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
 /** Affiche la bannière, la liste des logements et la section « Comment ça marche ? ». */
 export default function HomePage() {
   return (
-    <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1000px] md:pt-10">
+    <div className="mx-auto w-full max-w-[508px] px-4 pt-8 pb-16 md:max-w-[1147px] md:pt-10">
       <JsonLd data={[organizationSchema(), websiteSchema()]} />
 
       <PageHeading
@@ -39,14 +38,15 @@ export default function HomePage() {
         Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.
       </PageHeading>
 
-      <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[20px] md:aspect-[25/10]">
+      <div className="relative mt-8 aspect-[3/4] overflow-hidden rounded-[20px] md:aspect-[1115/458]">
         <Image
           src={HERO_IMAGE}
           alt=""
           fill
+          preload
           loading="eager"
           fetchPriority="high"
-          sizes="(min-width: 1000px) 968px, calc(100vw - 32px)"
+          sizes="(min-width: 1147px) 1115px, calc(100vw - 32px)"
           className="object-cover"
         />
       </div>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 /** Affiche le formulaire d'ajout d'un logement. */
 export default function NewPropertyPage() {
   return (
-    <div className="mx-auto w-full max-w-[508px] px-4 pt-6 pb-16 md:max-w-[1000px] md:pt-10">
+    <div className="mx-auto w-full max-w-[508px] px-4 pt-6 pb-16 md:max-w-[1197px] md:pt-10">
       <BackLink href="/#logements">Retour aux annonces</BackLink>
       <Suspense fallback={<PropertyForm />}>
         <PropertyFormForUser />

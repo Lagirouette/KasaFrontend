@@ -64,6 +64,7 @@ export default function Carousel({ pictures, title }: Props) {
               alt={isCurrent ? (hasMany ? `${title}, photo ${index + 1} sur ${count}` : title) : ""}
               aria-hidden={!isCurrent}
               fill
+              preload={index === 0}
               loading={index === 0 ? "eager" : "lazy"}
               fetchPriority={index === 0 ? "high" : "auto"}
               sizes={
